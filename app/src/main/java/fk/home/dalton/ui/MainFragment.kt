@@ -35,8 +35,10 @@ class MainFragment : Fragment() {
         }
 
         toggleDaltonBtn?.setOnClickListener {
-            activity?.let { activity ->
-                activity.startService(Intent(activity, DaltonService::class.java))
+            if (!canDrawOverlays(activity)) {
+                openPermissionScreen()
+            } else {
+                toggleGrayscale()
             }
         }
     }
@@ -44,23 +46,28 @@ class MainFragment : Fragment() {
     private fun startConfigHead() {
         activity?.let { activity ->
             if (!canDrawOverlays(activity)) {
-                //If the draw over permission is not available open the settings screen
-                //to grant the permission.
-                val intent = Intent(
-                    Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:" + activity.packageName)
-                )
-                startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION)
+                openPermissionScreen()
             } else {
                 activity.startForegroundService(Intent(activity, ConfigService::class.java))
             }
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    private fun toggleGrayscale() {
+        activity?.let { activity ->
+            activity.startService(Intent(activity, DaltonService::class.java))
+        }
     }
 
+    private fun openPermissionScreen() {
+        activity?.let { activity ->
+            val intent = Intent(
+                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                Uri.parse("package:" + activity.packageName)
+            )
+            startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION)
+        }
+    }
 
     private companion object {
         const val CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084
