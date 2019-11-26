@@ -44,7 +44,6 @@ class MainFragment : Fragment() {
     private fun startConfigHead() {
         activity?.let { activity ->
             if (!canDrawOverlays(activity)) {
-
                 //If the draw over permission is not available open the settings screen
                 //to grant the permission.
                 val intent = Intent(
@@ -53,7 +52,7 @@ class MainFragment : Fragment() {
                 )
                 startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION)
             } else {
-                activity.startService(Intent(activity, ConfigService::class.java))
+                activity.startForegroundService(Intent(activity, ConfigService::class.java))
             }
         }
     }
