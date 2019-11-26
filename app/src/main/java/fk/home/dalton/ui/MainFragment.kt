@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import fk.home.dalton.R
 import fk.home.dalton.service.ConfigService
+import fk.home.dalton.service.DaltonService
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
@@ -31,6 +32,12 @@ class MainFragment : Fragment() {
     private fun setupListeners() {
         openWidgetBtn?.setOnClickListener {
             startConfigHead()
+        }
+
+        toggleDaltonBtn?.setOnClickListener {
+            activity?.let { activity ->
+                activity.startService(Intent(activity, DaltonService::class.java))
+            }
         }
     }
 
