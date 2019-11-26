@@ -6,7 +6,7 @@ Also has a floating widget (like Facebook's chat head) for easy access to the fe
 
 ## Install
 
-This app needs special rights to access the configurations of the device.
+This app requires special rights to access the configurations of the device.
 
 You'll have to install the app and run:
 
