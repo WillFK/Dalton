@@ -14,9 +14,7 @@ You'll have to install the app and run:
 adb shell pm grant fk.home.dalton android.permission.WRITE_SECURE_SETTINGS
 ```
 
-## Credits
-
-those were very helpfull when developing the app.
+## Sources
 
 - https://medium.com/@kevalpatel2106/create-chat-heads-like-facebook-messenger-32f7f1a62064
 - https://github.com/fei-ke/Greyscale
