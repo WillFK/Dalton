@@ -16,5 +16,7 @@ adb shell pm grant fk.home.dalton android.permission.WRITE_SECURE_SETTINGS
 
 ## Credits
 
+Those links made my life very easy when developing this app:
+
 - https://medium.com/@kevalpatel2106/create-chat-heads-like-facebook-messenger-32f7f1a62064
 - https://github.com/fei-ke/Greyscale
